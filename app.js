@@ -5,7 +5,7 @@ const mainRouter = require("./routes/index");
 const app = express();
 const { PORT = 3001 } = process.env;
 
-//recommended by Terminal to get rid of error (error gets ignored in Terminal)
+// recommended by Terminal to get rid of warning ("DeprecationWarning: The `punycode` module is deprecated" warning gets ignored in Terminal)
 mongoose.set("strictQuery", true);
 
 mongoose
