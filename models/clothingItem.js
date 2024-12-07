@@ -11,7 +11,10 @@ const clothingItemSchema = new mongoose.Schema({
   weather: {
     type: String,
     required: true,
-    enum: ["hot", "warm", "cold"], // Enum validator to restrict the weather types
+    enum: {
+      values: ["hot", "warm", "cold"], // Enum validator to restrict the weather types
+      message: "Weather must be 'hot', 'warm', or 'cold'.",
+    },
   },
   imageUrl: {
     type: String,
@@ -20,7 +23,7 @@ const clothingItemSchema = new mongoose.Schema({
       validator(value) {
         return validator.isURL(value); // Validate that the value is a valid URL
       },
-      message: "You must enter a valid URL for the image", // Custom error message
+      message: "You must enter a valid URL for the image.", // Custom error message
     },
   },
   owner: {
