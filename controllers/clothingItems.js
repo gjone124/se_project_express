@@ -47,22 +47,34 @@ const getItems = (req, res) => {
     });
 };
 
-// Update Item
-const updateItem = (req, res) => {
+// Like Item (Update Method)
+const likeItem = (req, res) => {
   const { itemId } = req.params;
-  const { imageUrl } = req.body;
 
-  ClothingItem.findByIdAndUpdate(itemId, { $set: { imageUrl } })
-    .orFail()
-    .then((item) => res.status({ data: item }))
-    .catch((e) => {
-      res
+  if (!isValidObjectId(itemId)) {
+    return res.status(BAD_REQUEST).send({ message: "Invalid item ID." });
+  }
+
+  return ClothingItem.findByIdAndUpdate(
+    itemId,
+    { $addToSet: { likes: req.user._id } },
+    { new: true }
+  )
+    .then((item) => {
+      if (!item) {
+        return res.status(NOT_FOUND).send({ message: "Item not found." });
+      }
+      return res.status(200).send(item);
+    })
+    .catch((err) => {
+      console.error(err);
+      return res
         .status(INTERNAL_SERVER_ERROR)
-        .send({ message: "An error has occurred updating the item.", e });
+        .send({ message: "An error occurred on the server." });
     });
 };
 
-// Delete Item
+// Delete Item (Delete Method #1)
 const deleteItem = (req, res) => {
   const { itemId } = req.params;
 
@@ -91,35 +103,8 @@ const deleteItem = (req, res) => {
     });
 };
 
-// Like Item
-const likeItem = (req, res) => {
-  const { itemId } = req.params;
-
-  if (!isValidObjectId(itemId)) {
-    return res.status(BAD_REQUEST).send({ message: "Invalid item ID." });
-  }
-
-  return ClothingItem.findByIdAndUpdate(
-    itemId,
-    { $addToSet: { likes: req.user._id } },
-    { new: true }
-  )
-    .then((item) => {
-      if (!item) {
-        return res.status(NOT_FOUND).send({ message: "Item not found." });
-      }
-      return res.status(200).send(item);
-    })
-    .catch((err) => {
-      console.error(err);
-      return res
-        .status(INTERNAL_SERVER_ERROR)
-        .send({ message: "An error occurred on the server." });
-    });
-};
-
-// Unlike Item
-const dislikeItem = (req, res) => {
+// Unlike Item (Delete Method #2)
+const unlikeItem = (req, res) => {
   const { itemId } = req.params;
 
   if (!isValidObjectId(itemId)) {
@@ -148,8 +133,7 @@ const dislikeItem = (req, res) => {
 module.exports = {
   createItem,
   getItems,
-  updateItem,
-  deleteItem,
   likeItem,
-  dislikeItem,
+  deleteItem,
+  unlikeItem,
 };
