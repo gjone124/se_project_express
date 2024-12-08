@@ -84,6 +84,7 @@ Here are six screenshots associated with Project 5 Stage 3:
 - Node.js (runtime environment that allows Javascript to run outside web browser)
 - Express.js (web application framework for Node.js)
 - Mongoose (Object Data Modeling library for Node.js and MongoDB)
+- ES Lint (tool that identifies and fixes problems in your coded)
 - Schema (framework that defines how data is organized)
 - Routes (define endpoints in application that map to a functionality)
 - Controllers (handles routes by porcessing requests, interacting with database, and returning responses)
