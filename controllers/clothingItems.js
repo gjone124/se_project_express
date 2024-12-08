@@ -1,5 +1,3 @@
-// success
-
 const mongoose = require("mongoose");
 const ClothingItem = require("../models/clothingItem");
 const {
