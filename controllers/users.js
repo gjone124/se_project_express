@@ -24,10 +24,16 @@ const getUsers = (req, res) => {
 const createUser = (req, res) => {
   const { name, avatar } = req.body;
 
-  if (!name || !avatar) {
+  if (!name) {
     return res
       .status(BAD_REQUEST)
-      .send({ message: "Both 'name' and 'avatar' are required." });
+      .send({ message: "'name' is a required field." });
+  }
+
+  if (!avatar) {
+    return res
+      .status(BAD_REQUEST)
+      .send({ message: "'avatar' is a required field." });
   }
 
   return User.create({ name, avatar })
