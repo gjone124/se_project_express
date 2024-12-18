@@ -7,7 +7,9 @@
 - Testing
 - Stage 3 (Sprint 12)
 - Images
+- Applications Used
 - Tech Used
+- Routes Used
 
 ## Intro
 
@@ -40,6 +42,10 @@ The third stage involves:
 3)configuring routes and controllers to handle API requests and ensure seamless functionality
 
 4)integrating a MongoDB database with the server for efficient data storage and retrieval
+
+5)implementing a temporary authorization solution
+
+6)testing the project using Postman and GitHub Actions
 
 ## Images
 
