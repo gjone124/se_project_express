@@ -1,8 +1,13 @@
 const router = require("express").Router();
-const { getUsers, createUser, getUser } = require("../controllers/users");
+const { getCurrentUser, updateProfile } = require("../controllers/users");
+const auth = require("../middlewares/auth");
 
-router.get("/", getUsers);
-router.post("/", createUser);
-router.get("/:userId", getUser);
+// CRUD (Create, Read, Update, Delete)
+
+// Read (getUser renamed to getCurrentUser and route modified from "/:userId" to "/me")
+router.get("/me", auth, getCurrentUser);
+
+// Update
+router.patch("/me", auth, updateProfile);
 
 module.exports = router;
