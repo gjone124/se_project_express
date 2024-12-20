@@ -1,9 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const mainRouter = require("./routes/index");
 const app = express();
 const { PORT = 3001 } = process.env;
-const cors = require("cors");
 
 // recommended by Terminal to get rid of warning ("DeprecationWarning: The `punycode` module is deprecated" warning gets ignored in Terminal)
 mongoose.set("strictQuery", true);
