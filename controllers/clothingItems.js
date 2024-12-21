@@ -12,7 +12,7 @@ const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
 
 // CRUD (Create, Read, Update, Delete)
 
-// Create Item
+// Create (POST /items route)
 const createItem = (req, res) => {
   const { name, weather, imageUrl } = req.body;
 
@@ -40,7 +40,7 @@ const createItem = (req, res) => {
     });
 };
 
-// Read Items
+// Read (GET /items route)
 const getItems = (req, res) => {
   ClothingItem.find({})
     .then((items) => res.status(200).send(items))
@@ -52,7 +52,7 @@ const getItems = (req, res) => {
     });
 };
 
-// Like Item (Update Method)
+// Update (PUT /items/:itemId/likes route)
 const likeItem = (req, res) => {
   const { itemId } = req.params;
 
@@ -79,7 +79,7 @@ const likeItem = (req, res) => {
     });
 };
 
-// Delete Item (Delete Method #1)
+// Delete Method #1 (DELETE /items/:itemId route)
 const deleteItem = (req, res) => {
   const { itemId } = req.params;
 
@@ -116,7 +116,7 @@ const deleteItem = (req, res) => {
     });
 };
 
-// Unlike Item (Delete Method #2)
+// Delete Method #2 (DELETE /items/:itemId/likes route)
 const unlikeItem = (req, res) => {
   const { itemId } = req.params;
 

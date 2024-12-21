@@ -13,8 +13,7 @@ const {
 
 // CRUD (Create, Read, Update, Delete)
 
-// Create (POST /users route)
-
+// Create Method #1 (POST /signup route)
 const createUser = (req, res) => {
   const { name, avatar, email, password } = req.body;
 
@@ -83,7 +82,7 @@ const createUser = (req, res) => {
   });
 };
 
-// Create
+// Create Method #2 (POST /signin route)
 const login = (req, res) => {
   const { email, password } = req.body;
 
@@ -115,8 +114,7 @@ const login = (req, res) => {
     });
 };
 
-// Read (GET /user route (getUser renamed to getCurrentUser))
-
+// Read (GET /users/me route (getUser renamed to getCurrentUser and route modified from "/:userId" to "/me"))
 const getCurrentUser = (req, res) => {
   const userId = req.user._id;
 
@@ -141,7 +139,7 @@ const getCurrentUser = (req, res) => {
     });
 };
 
-// Update
+// Update (PATCH /users/me route)
 const updateProfile = (req, res) => {
   const userId = req.user._id;
   const { name, avatar } = req.body;

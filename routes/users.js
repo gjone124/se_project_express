@@ -4,10 +4,10 @@ const auth = require("../middlewares/auth");
 
 // CRUD (Create, Read, Update, Delete)
 
-// Read (getUser renamed to getCurrentUser and route modified from "/:userId" to "/me")
+// Read (GET /users/me route (getUser renamed to getCurrentUser and route modified from "/:userId" to "/me"))
 router.get("/me", auth, getCurrentUser);
 
-// Update
+// Update (PATCH /users/me route)
 router.patch("/me", auth, updateProfile);
 
 module.exports = router;

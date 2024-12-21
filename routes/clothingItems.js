@@ -12,17 +12,19 @@ const auth = require("../middlewares/auth");
 
 // CRUD (Create, Read, Update, Delete)
 
-// Create
+// Create (POST /items route)
 router.post("/", auth, createItem);
 
-// Read
+// Read (GET /items route)
 router.get("/", getItems);
 
-// Update
+// Update (PUT /items/:itemId/likes route)
 router.put("/:itemId/likes", auth, likeItem);
 
-// Delete
+// Delete Method #1 (DELETE /items/:itemId route)
 router.delete("/:itemId", auth, deleteItem);
+
+// Delete Method #2 (DELETE /items/:itemId/likes route)
 router.delete("/:itemId/likes", auth, unlikeItem);
 
 module.exports = router;

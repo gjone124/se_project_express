@@ -7,11 +7,12 @@ const { NOT_FOUND_ERROR } = require("../utils/errors");
 
 // CRUD (Create, Read, Update, Delete)
 
-// Create
+// Create Method #1 (POST /signup route)
 router.post("/signup", createUser);
+
+// Create Method #2 (POST /signin route)
 router.post("/signin", login);
 
-// Read
 router.use("/users", userRouter);
 router.use("/items", itemRouter);
 

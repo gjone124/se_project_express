@@ -137,17 +137,17 @@ Implemented During Sprint 12
 - getUsers (Read; GET method) - http://localhost:3001/users
 - getUser (Read; GET method) - http://localhost:3001/users/:userId
 - getItems (Read; GET method) - http://localhost:3001/items
-- likeItem (Update; PUT method) - http://localhost:3001/items/:id/likes
-- deleteItem (Delete; DELETE method) - http://localhost:3001/items/:id
-- unlikeItem (Delete; DELETE method) - http://localhost:3001/items/:id/likes
+- likeItem (Update; PUT method) - http://localhost:3001/items/:itemId/likes
+- deleteItem (Delete; DELETE method) - http://localhost:3001/items/:itemId
+- unlikeItem (Delete; DELETE method) - http://localhost:3001/items/:itemId/likes
 
 Still In Use For Sprint 13
 
 - createItem (Create; POST method) - http://localhost:3001/items
 - getItems (Read; GET method) - http://localhost:3001/items
-- likeItem (Update; PUT method) - http://localhost:3001/items/:id/likes
-- deleteItem (Delete; DELETE method) - http://localhost:3001/items/:id
-- unlikeItem (Delete; DELETE method) - http://localhost:3001/items/:id/likes
+- likeItem (Update; PUT method) - http://localhost:3001/items/:itemId/likes
+- deleteItem (Delete; DELETE method) - http://localhost:3001/items/:itemId
+- unlikeItem (Delete; DELETE method) - http://localhost:3001/items/:itemId/likes
 
 Added During Sprint 13
 
