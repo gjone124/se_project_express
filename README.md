@@ -124,6 +124,7 @@ Implemented During Sprint 12
 Added During Sprint 13
 
 - Authorization (through the use of JSON Web Token)
+- Encryption (through the use of bcrypt)
 - Sign Up and Sign In Feature
 
 ## Routes Used

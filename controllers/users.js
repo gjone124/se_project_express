@@ -41,45 +41,51 @@ const createUser = (req, res) => {
       .send({ message: "Password is a required field." });
   }
 
-  return User.findOne({ email }).then((existingUser) => {
-    if (existingUser) {
-      return res.status(CONFLICT_ERROR).send({
-        message: "A user with this email address already exists.",
-      });
-    }
+  return User.findOne({ email })
+    .then((existingUser) => {
+      if (existingUser) {
+        return res.status(CONFLICT_ERROR).send({
+          message: "A user with this email address already exists.",
+        });
+      }
 
-    return bcrypt
-      .hash(password, 10)
-      .then((hashedPassword) =>
-        User.create({
-          name,
-          avatar,
-          email,
-          password: hashedPassword,
+      return bcrypt
+        .hash(password, 10)
+        .then((hashedPassword) =>
+          User.create({
+            name,
+            avatar,
+            email,
+            password: hashedPassword,
+          })
+        )
+        .then((user) => {
+          const userResponse = {
+            _id: user._id,
+            name: user.name,
+            avatar: user.avatar,
+            email: user.email,
+          };
+          return res.status(201).send(userResponse);
         })
-      )
-      .then((user) => {
-        const userResponse = {
-          _id: user._id,
-          name: user.name,
-          avatar: user.avatar,
-          email: user.email,
-        };
-        return res.status(201).send(userResponse);
-      })
-      .catch((err) => {
-        console.error("Error creating user:", err);
-        if (err.name === "ValidationError") {
-          return res
-            .status(BAD_REQUEST_ERROR)
-            .send({ message: "Invalid data provided for user creation." });
-        }
+        .catch((err) => {
+          console.error("Error creating user:", err);
+          if (err.name === "ValidationError") {
+            return res
+              .status(BAD_REQUEST_ERROR)
+              .send({ message: "Invalid data provided for user creation." });
+          }
 
-        return res
-          .status(INTERNAL_SERVER_ERROR)
-          .send({ message: "An error occurred on the server." });
-      });
-  });
+          return res
+            .status(INTERNAL_SERVER_ERROR)
+            .send({ message: "An error occurred on the server." });
+        });
+    })
+    .catch(() =>
+      res
+        .status(INTERNAL_SERVER_ERROR)
+        .send({ message: "An error occurred on the server." })
+    );
 };
 
 // Create Method #2 (POST /signin route)
@@ -108,9 +114,15 @@ const login = (req, res) => {
     })
     .catch((err) => {
       console.error("Login error:", err.message);
-      res
-        .status(UNAUTHORIZED_ERROR)
-        .send({ message: "Invalid email address or password." });
+      if (err.message === "Invalid email address or password.") {
+        res
+          .status(UNAUTHORIZED_ERROR)
+          .send({ message: "Invalid email address or password." });
+      } else {
+        res
+          .status(INTERNAL_SERVER_ERROR)
+          .send({ message: "An error occurred on the server." });
+      }
     });
 };
 
