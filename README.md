@@ -99,6 +99,16 @@ Here are six screenshots associated with Project 5 Stage 3:
 
 <div display="flex"><img align="center" alt="Error Handling (VS Code Terminal)" src="./assets/Stage3/Error Handling (VS Code Terminal).png" /></div><br>
 
+**Images (Stage 4)**
+
+1)All Sprint 13 Tests Passed (Postman)
+
+<div display="flex"><img align="center" alt="All Sprint 13 Tests Passed (Postman)" src="./assets/Stage4/All Sprint 13 Tests Passed (Postman).png" /></div><br>
+
+2)All Sprint 13 Tests Passed (Github Action)
+
+<div display="flex"><img align="center" alt="All Sprint 13 Tests Passed (Github Action)" src="./assets/Stage4/All Sprint 13 Tests Passed (Github Action).png" /></div><br>
+
 ## Applications Used
 
 - Postman (used for API development and testing)
