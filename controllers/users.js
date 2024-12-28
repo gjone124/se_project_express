@@ -14,29 +14,29 @@ const {
 // CRUD (Create, Read, Update, Delete)
 
 // Create Method #1 (POST /signup route)
-const createUser = (req, res) => {
-  const { name, avatar, email, password } = req.body;
+const createUser = (request, response) => {
+  const { name, avatar, email, password } = request.body;
 
   if (!name) {
-    return res
+    return response
       .status(BAD_REQUEST_ERROR)
       .send({ message: "Name is a required field." });
   }
 
   if (!avatar) {
-    return res
+    return response
       .status(BAD_REQUEST_ERROR)
       .send({ message: "Avatar is a required field." });
   }
 
   if (!email) {
-    return res
+    return response
       .status(BAD_REQUEST_ERROR)
       .send({ message: "Email address is a required field." });
   }
 
   if (!password) {
-    return res
+    return response
       .status(BAD_REQUEST_ERROR)
       .send({ message: "Password is a required field." });
   }
@@ -44,7 +44,7 @@ const createUser = (req, res) => {
   return User.findOne({ email })
     .then((existingUser) => {
       if (existingUser) {
-        return res.status(CONFLICT_ERROR).send({
+        return response.status(CONFLICT_ERROR).send({
           message: "A user with this email address already exists.",
         });
       }
@@ -66,40 +66,40 @@ const createUser = (req, res) => {
             avatar: user.avatar,
             email: user.email,
           };
-          return res.status(201).send(userResponse);
+          return response.status(201).send(userResponse);
         })
         .catch((err) => {
           console.error("Error creating user:", err);
           if (err.name === "ValidationError") {
-            return res
+            return response
               .status(BAD_REQUEST_ERROR)
               .send({ message: "Invalid data provided for user creation." });
           }
 
-          return res
+          return response
             .status(INTERNAL_SERVER_ERROR)
             .send({ message: "An error occurred on the server." });
         });
     })
     .catch(() =>
-      res
+      response
         .status(INTERNAL_SERVER_ERROR)
         .send({ message: "An error occurred on the server." })
     );
 };
 
 // Create Method #2 (POST /signin route)
-const login = (req, res) => {
-  const { email, password } = req.body;
+const login = (request, response) => {
+  const { email, password } = request.body;
 
   if (!email) {
-    return res
+    return response
       .status(BAD_REQUEST_ERROR)
       .send({ message: "Email address is required." });
   }
 
   if (!password) {
-    return res
+    return response
       .status(BAD_REQUEST_ERROR)
       .send({ message: "Password is required." });
   }
@@ -110,16 +110,16 @@ const login = (req, res) => {
         expiresIn: "7d",
       });
 
-      return res.status(200).send({ token });
+      return response.status(200).send({ token });
     })
     .catch((err) => {
       console.error("Login error:", err.message);
       if (err.message === "Invalid email address or password.") {
-        res
+        response
           .status(UNAUTHORIZED_ERROR)
           .send({ message: "Invalid email address or password." });
       } else {
-        res
+        response
           .status(INTERNAL_SERVER_ERROR)
           .send({ message: "An error occurred on the server." });
       }
@@ -127,11 +127,11 @@ const login = (req, res) => {
 };
 
 // Read (GET /users/me route (getUser renamed to getCurrentUser and route modified from "/:userId" to "/me"))
-const getCurrentUser = (req, res) => {
-  const userId = req.user._id;
+const getCurrentUser = (request, response) => {
+  const userId = request.user._id;
 
   if (!mongoose.Types.ObjectId.isValid(userId)) {
-    return res
+    return response
       .status(BAD_REQUEST_ERROR)
       .send({ message: "Invalid user ID format." });
   }
@@ -139,31 +139,33 @@ const getCurrentUser = (req, res) => {
   return User.findById(userId)
     .then((user) => {
       if (!user) {
-        return res.status(NOT_FOUND_ERROR).send({ message: "User not found." });
+        return response
+          .status(NOT_FOUND_ERROR)
+          .send({ message: "User not found." });
       }
-      return res.status(200).send(user);
+      return response.status(200).send(user);
     })
     .catch((err) => {
       console.error("Error fetching user:", err);
-      return res
+      return response
         .status(INTERNAL_SERVER_ERROR)
         .send({ message: "An error occurred on the server." });
     });
 };
 
 // Update (PATCH /users/me route)
-const updateProfile = (req, res) => {
-  const userId = req.user._id;
-  const { name, avatar } = req.body;
+const updateProfile = (request, response) => {
+  const userId = request.user._id;
+  const { name, avatar } = request.body;
 
   if (!name) {
-    return res.status(BAD_REQUEST_ERROR).send({
+    return response.status(BAD_REQUEST_ERROR).send({
       message: "Name is a required field.",
     });
   }
 
   if (!avatar) {
-    return res.status(BAD_REQUEST_ERROR).send({
+    return response.status(BAD_REQUEST_ERROR).send({
       message: "Avatar is a required field.",
     });
   }
@@ -175,18 +177,20 @@ const updateProfile = (req, res) => {
   )
     .then((updatedUser) => {
       if (!updatedUser) {
-        return res.status(NOT_FOUND_ERROR).send({ message: "User not found." });
+        return response
+          .status(NOT_FOUND_ERROR)
+          .send({ message: "User not found." });
       }
-      return res.status(200).send(updatedUser);
+      return response.status(200).send(updatedUser);
     })
     .catch((err) => {
       console.error("Error updating user profile:", err);
       if (err.name === "ValidationError") {
-        return res
+        return response
           .status(BAD_REQUEST_ERROR)
           .send({ message: "Invalid data provided for profile update." });
       }
-      return res
+      return response
         .status(INTERNAL_SERVER_ERROR)
         .send({ message: "An error occurred on the server." });
     });

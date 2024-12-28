@@ -16,8 +16,8 @@ router.post("/signin", login);
 router.use("/users", userRouter);
 router.use("/items", itemRouter);
 
-router.use((req, res) => {
-  res.status(NOT_FOUND_ERROR).send({ message: "Router not found." });
+router.use((request, response) => {
+  response.status(NOT_FOUND_ERROR).send({ message: "Router not found." });
 });
 
 module.exports = router;
