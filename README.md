@@ -191,6 +191,6 @@ Added During Sprint 13
 - bcryptjs
 - cors
 
-## Link to Front End of This Project
+## Link to Front End Application of This Project
 
 https://github.com/gjone124/se_project_react
