@@ -71,43 +71,45 @@ The fourth stage involves:
 
 ## Images
 
-**Images (Stage 3)**
+**Images (Stage 3 / Sprint 12)**
 
 Here are six screenshots associated with Project 5 Stage 3:
 
 1)All Sprint 12 Tests Passed (Postman)
 
-<div display="flex"><img align="center" alt="All Sprint 12 Tests Passed (Postman)" src="./assets/Stage3/All Sprint 12 Tests Passed (Postman).png" /></div><br>
+<div display="flex"><img align="center" alt="All Sprint 12 Tests Passed (Postman)" src="./assets/Stage 3 (Sprint 12)/All Sprint 12 Tests Passed (Postman).png" /></div><br>
 
 2)All Sprint 12 Tests Passed (Github Action)
 
-<div display="flex"><img align="center" alt="All Sprint 12 Tests Passed (Github Action)" src="./assets/Stage3/All Sprint 12 Tests Passed (Github Action).png" /></div><br>
+<div display="flex"><img align="center" alt="All Sprint 12 Tests Passed (Github Action)" src="./assets/Stage 3 (Sprint 12)/All Sprint 12 Tests Passed (Github Action).png" /></div><br>
 
 3)User Added (Postman)
 
-<div display="flex"><img align="center" alt="User Added (Postman)" src="./assets/Stage3/User Added (Postman).png" /></div><br>
+<div display="flex"><img align="center" alt="User Added (Postman)" src="./assets/Stage 3 (Sprint 12)/User Added (Postman).png" /></div><br>
 
 4)User Added (MongoDB)
 
-<div display="flex"><img align="center" alt="User Added (MongoDB)" src="./assets/Stage3/User Added (MongoDB).png" /></div><br>
+<div display="flex"><img align="center" alt="User Added (MongoDB)" src="./assets/Stage 3 (Sprint 12)/User Added (MongoDB).png" /></div><br>
 
 5)Error Handling (Postman)
 
-<div display="flex"><img align="center" alt="Error Handling (Postman)" src="./assets/Stage3/Error Handling (Postman).png" /></div><br>
+<div display="flex"><img align="center" alt="Error Handling (Postman)" src="./assets/Stage 3 (Sprint 12)/Error Handling (Postman).png" /></div><br>
 
 6)Error Handling (VS Code Terminal)
 
-<div display="flex"><img align="center" alt="Error Handling (VS Code Terminal)" src="./assets/Stage3/Error Handling (VS Code Terminal).png" /></div><br>
+<div display="flex"><img align="center" alt="Error Handling (VS Code Terminal)" src="./assets/Stage 3 (Sprint 12)/Error Handling (VS Code Terminal).png" /></div><br>
 
-**Images (Stage 4)**
+**Images (Stage 4 / Sprint 13)**
+
+Here are two screenshots associated with Project 5 Stage 4:
 
 1)All Sprint 13 Tests Passed (Postman)
 
-<div display="flex"><img align="center" alt="All Sprint 13 Tests Passed (Postman)" src="./assets/Stage4/All Sprint 13 Tests Passed (Postman).png" /></div><br>
+<div display="flex"><img align="center" alt="All Sprint 13 Tests Passed (Postman)" src="./assets/Stage 4 (Sprint 13)/All Sprint 13 Tests Passed (Postman).png" /></div><br>
 
 2)All Sprint 13 Tests Passed (Github Action)
 
-<div display="flex"><img align="center" alt="All Sprint 13 Tests Passed (Github Action)" src="./assets/Stage4/All Sprint 13 Tests Passed (Github Action).png" /></div><br>
+<div display="flex"><img align="center" alt="All Sprint 13 Tests Passed (Github Action)" src="./assets/Stage 4 (Sprint 13)/All Sprint 13 Tests Passed (Github Action).png" /></div><br>
 
 ## Applications Used
 
