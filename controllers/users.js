@@ -23,6 +23,7 @@ const createUser = (request, response) => {
       .send({ message: "Name is a required field." });
   }
 
+  // (comment out if no avatar provided)
   if (!avatar) {
     return response
       .status(BAD_REQUEST_ERROR)

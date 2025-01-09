@@ -13,7 +13,7 @@ const auth = require("../middlewares/auth");
 // CRUD (Create, Read, Update, Delete)
 
 // Create (POST /items route)
-router.post("/", auth, createItem);
+router.post("/", auth, createItem); // can temporarily remove "auth" to create an item (not working)
 
 // Read (GET /items route)
 router.get("/", getItems);
