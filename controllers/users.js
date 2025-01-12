@@ -24,11 +24,11 @@ const createUser = (request, response) => {
   }
 
   // (comment out if no avatar provided)
-  if (!avatar) {
-    return response
-      .status(BAD_REQUEST_ERROR)
-      .send({ message: "Avatar is a required field." });
-  }
+  // if (!avatar) {
+  //   return response
+  //     .status(BAD_REQUEST_ERROR)
+  //     .send({ message: "Avatar is a required field." });
+  // }
 
   if (!email) {
     return response

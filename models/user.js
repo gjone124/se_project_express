@@ -17,15 +17,20 @@ const userSchema = new mongoose.Schema({
   },
   avatar: {
     type: String,
-    required: [true, "The avatar field is required."], // (comment out if no avatar provided)
+    //required: [true, "The avatar field is required."], // (comment out if no avatar provided)
     validate: {
       validator(value) {
-        return validator.isURL(value, {
-          protocols: ["http", "https"],
-          require_protocol: true,
-        });
+        return (
+          // modified for no avatar scenario
+          value === "" ||
+          validator.isURL(value, {
+            protocols: ["http", "https"],
+            require_protocol: true,
+          })
+        );
       },
       message: "You must enter a valid URL.",
+      default: "",
     },
   },
   email: {
