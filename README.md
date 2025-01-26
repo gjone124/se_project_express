@@ -105,11 +105,13 @@ More specifically, the sixth stage involves:
 
 12)storing JSON web token in a .env file on the server
 
-13)uploading front end to the server & configuring ngnix to serve the front end
+13)modify homepage field in se_project_react's package.json file to route project to registered domain name [https://wtwr.theoceanforest.com] (project previously routed to GitHub Pages URL [https://gjone124.github.io/se_project_react/] )
 
-14)setting up server crash testing
+14)uploading front end to the server & configuring ngnix to serve the front end
 
-15)adding a link to your website in your README.md file
+15)setting up server crash testing
+
+16)adding a link to your website in your README.md file
 
 ## Images
 
