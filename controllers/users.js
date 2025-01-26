@@ -1,53 +1,50 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const User = require("../models/user");
-const { JWT_SECRET } = require("../utils/config");
+const User = require("../models/user.js");
+const { JWT_SECRET } = require("../utils/config.js");
 const {
   BAD_REQUEST_ERROR,
   CONFLICT_ERROR,
   NOT_FOUND_ERROR,
   INTERNAL_SERVER_ERROR,
   UNAUTHORIZED_ERROR,
-} = require("../utils/errors");
+} = require("../utils/errors.js");
+
+const BadRequestError = require("../errors/BadRequestError.js");
+const ConflictError = require("../errors/ConflictError.js");
+const NotFoundError = require("../errors/NotFoundError.js");
+const UnauthorizedError = require("../errors/UnauthorizedError.js");
 
 // CRUD (Create, Read, Update, Delete)
 
 // Create Method #1 (POST /signup route)
-const createUser = (request, response) => {
+const createUser = (request, response, next) => {
   const { name, avatar, email, password } = request.body;
 
   if (!name) {
-    return response
-      .status(BAD_REQUEST_ERROR)
-      .send({ message: "Name is a required field." });
+    return next(new BadRequestError("Name is a required field."));
   }
 
-  // (comment out if no avatar provided)
+  //(comment out if avatar is not required)
   // if (!avatar) {
-  //   return response
-  //     .status(BAD_REQUEST_ERROR)
-  //     .send({ message: "Avatar is a required field." });
+  //   return next(new BadRequestError("Avatar is a required field."));
   // }
 
   if (!email) {
-    return response
-      .status(BAD_REQUEST_ERROR)
-      .send({ message: "Email address is a required field." });
+    return next(new BadRequestError("Email address is a required field."));
   }
 
   if (!password) {
-    return response
-      .status(BAD_REQUEST_ERROR)
-      .send({ message: "Password is a required field." });
+    return next(new BadRequestError("Password is a required field."));
   }
 
   return User.findOne({ email })
     .then((existingUser) => {
       if (existingUser) {
-        return response.status(CONFLICT_ERROR).send({
-          message: "A user with this email address already exists.",
-        });
+        return next(
+          new ConflictError("A user with this email address already exists.")
+        );
       }
 
       return bcrypt
@@ -72,37 +69,27 @@ const createUser = (request, response) => {
         .catch((err) => {
           console.error("Error creating user:", err);
           if (err.name === "ValidationError") {
-            return response
-              .status(BAD_REQUEST_ERROR)
-              .send({ message: "Invalid data provided for user creation." });
+            next(
+              new BadRequestError("Invalid data provided for user creation.")
+            );
           }
 
-          return response
-            .status(INTERNAL_SERVER_ERROR)
-            .send({ message: "An error occurred on the server." });
+          return next(err);
         });
     })
-    .catch(() =>
-      response
-        .status(INTERNAL_SERVER_ERROR)
-        .send({ message: "An error occurred on the server." })
-    );
+    .catch(next);
 };
 
 // Create Method #2 (POST /signin route)
-const login = (request, response) => {
+const login = (request, response, next) => {
   const { email, password } = request.body;
 
   if (!email) {
-    return response
-      .status(BAD_REQUEST_ERROR)
-      .send({ message: "Email address is required." });
+    return next(new BadRequestError("Email address is a required field."));
   }
 
   if (!password) {
-    return response
-      .status(BAD_REQUEST_ERROR)
-      .send({ message: "Password is required." });
+    return next(new BadRequestError("Password is a required field."));
   }
 
   return User.findUserByCredentials(email, password)
@@ -115,85 +102,68 @@ const login = (request, response) => {
     })
     .catch((err) => {
       console.error("Login error:", err.message);
-      if (err.message === "Invalid email address or password.") {
-        response
-          .status(UNAUTHORIZED_ERROR)
-          .send({ message: "Invalid email address or password." });
-      } else {
-        response
-          .status(INTERNAL_SERVER_ERROR)
-          .send({ message: "An error occurred on the server." });
-      }
+      next(new UnauthorizedError("Invalid email address or password."));
     });
 };
 
 // Read (GET /users/me route (getUser renamed to getCurrentUser and route modified from "/:userId" to "/me"))
-const getCurrentUser = (request, response) => {
+const getCurrentUser = (request, response, next) => {
   const userId = request.user._id;
 
   if (!mongoose.Types.ObjectId.isValid(userId)) {
-    return response
-      .status(BAD_REQUEST_ERROR)
-      .send({ message: "Invalid user ID format." });
+    return next(new BadRequestError("Invalid user ID format."));
   }
 
   return User.findById(userId)
     .then((user) => {
       if (!user) {
-        return response
-          .status(NOT_FOUND_ERROR)
-          .send({ message: "User not found." });
+        return next(new NotFoundError("User not found."));
       }
       return response.status(200).send(user);
     })
     .catch((err) => {
       console.error("Error fetching user:", err);
-      return response
-        .status(INTERNAL_SERVER_ERROR)
-        .send({ message: "An error occurred on the server." });
+      return next(err);
     });
 };
 
 // Update (PATCH /users/me route)
-const updateProfile = (request, response) => {
+const updateProfile = (request, response, next) => {
   const userId = request.user._id;
   const { name, avatar } = request.body;
 
   if (!name) {
-    return response.status(BAD_REQUEST_ERROR).send({
-      message: "Name is a required field.",
-    });
+    return next(new BadRequestError("Name is a required field."));
   }
 
-  if (!avatar) {
-    return response.status(BAD_REQUEST_ERROR).send({
-      message: "Avatar is a required field.",
-    });
+  //(comment out if avatar is not required)
+  // if (!avatar) {
+  //   return next(new BadRequestError("Avatar is a required field."));
+  // }
+
+  const updateData = { name };
+  if (avatar) {
+    updateData.avatar = avatar;
   }
 
-  return User.findByIdAndUpdate(
-    userId,
-    { name, avatar },
-    { new: true, runValidators: true }
-  )
+  return User.findByIdAndUpdate(userId, updateData, {
+    new: true,
+    runValidators: true,
+  })
     .then((updatedUser) => {
       if (!updatedUser) {
-        return response
-          .status(NOT_FOUND_ERROR)
-          .send({ message: "User not found." });
+        return next(new NotFoundError("User not found."));
       }
       return response.status(200).send(updatedUser);
     })
     .catch((err) => {
       console.error("Error updating user profile:", err);
       if (err.name === "ValidationError") {
-        return response
-          .status(BAD_REQUEST_ERROR)
-          .send({ message: "Invalid data provided for profile update." });
+        return next(
+          new BadRequestError("Invalid data provided for profile update.")
+        );
       }
-      return response
-        .status(INTERNAL_SERVER_ERROR)
-        .send({ message: "An error occurred on the server." });
+      return next(err);
     });
 };
 

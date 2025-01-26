@@ -1,7 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const mainRouter = require("./routes/index");
+const { errors } = require("celebrate");
+const mainRouter = require("./routes/index.js");
+const errorHandler = require("./middlewares/error-handler.js");
+const { requestLogger, errorLogger } = require("./middlewares/logger.js");
 
 const app = express();
 const { PORT = 3001 } = process.env;
@@ -18,7 +21,19 @@ mongoose
 
 app.use(express.json());
 app.use(cors());
+
+// enable request logger using Winston (Sprint 15)
+app.use(requestLogger);
 app.use("/", mainRouter);
+
+// enable error logger using Winston (Sprint 15)
+app.use(errorLogger);
+
+// celebrate error handler (Sprint 15)
+app.use(errors());
+
+// centralized error handler (Sprint 15)
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

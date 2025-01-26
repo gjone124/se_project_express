@@ -1,65 +1,70 @@
 const mongoose = require("mongoose");
-const ClothingItem = require("../models/clothingItem");
+const ClothingItem = require("../models/clothingItem.js");
 
 const {
   BAD_REQUEST_ERROR,
   FORBIDDEN_ERROR,
   NOT_FOUND_ERROR,
   INTERNAL_SERVER_ERROR,
-} = require("../utils/errors");
+} = require("../utils/errors.js");
+
+const BadRequestError = require("../errors/BadRequestError.js");
+const ForbiddenError = require("../errors/ForbiddenError.js");
+const NotFoundError = require("../errors/NotFoundError.js");
 
 const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
 
 // CRUD (Create, Read, Update, Delete)
 
 // Create (POST /items route)
-const createItem = (request, response) => {
+const createItem = (request, response, next) => {
   const { name, weather, imageUrl } = request.body;
+  const owner = request.user?._id;
 
-  if (!request.user || !request.user._id) {
-    return response
-      .status(BAD_REQUEST_ERROR)
-      .send({ message: "User is not authenticated." });
+  if (!name || !weather || !imageUrl) {
+    return new BadRequestError("Missing required fields for item creation.");
   }
 
-  const owner = request.user._id;
+  if (!request.user || !request.user._id) {
+    return next(new BadRequestError("User is not authenticated."));
+  }
 
   return ClothingItem.create({ name, weather, imageUrl, owner })
     .then((item) => response.status(201).send(item))
     .catch((err) => {
       console.error(err);
       if (err.name === "ValidationError") {
-        return response.status(BAD_REQUEST_ERROR).send({
-          message:
-            "Error creating item - ensure there is a valid name (2 to 30 characters), a valid weather type ('hot', 'warm', or 'cold'), a valid image URL, and a valid owner ID.",
-        });
+        next(
+          new BadRequestError(
+            "Error creating item. Invalid data. Ensure there is a valid name (2 to 30 characters), a valid weather type ('hot', 'warm', or 'cold'), a valid image URL, and a valid owner ID."
+          )
+        );
+      } else {
+        next(err);
       }
-      return response
-        .status(INTERNAL_SERVER_ERROR)
-        .send({ message: "An error occurred on the server." });
     });
 };
 
 // Read (GET /items route)
-const getItems = (request, response) => {
+const getItems = (request, response, next) => {
   ClothingItem.find({})
     .then((items) => response.status(200).send(items))
     .catch((err) => {
       console.error(err);
-      return response
-        .status(INTERNAL_SERVER_ERROR)
-        .send({ message: "An error occurred on the server." });
+      return next(err);
     });
 };
 
 // Update (PUT /items/:itemId/likes route)
-const likeItem = (request, response) => {
+const likeItem = (request, response, next) => {
   const { itemId } = request.params;
 
+  if (!itemId) {
+    return next(new BadRequestError("Missing item ID."));
+  }
+
   if (!isValidObjectId(itemId)) {
-    return response
-      .status(BAD_REQUEST_ERROR)
-      .send({ message: "Invalid item ID." });
+    return next(new BadRequestError("Invalid item ID."));
   }
 
   return ClothingItem.findByIdAndUpdate(
@@ -69,41 +74,37 @@ const likeItem = (request, response) => {
   )
     .then((item) => {
       if (!item) {
-        return response
-          .status(NOT_FOUND_ERROR)
-          .send({ message: "Item not found." });
+        return next(new NotFoundError("Item not found."));
       }
       return response.status(200).send(item);
     })
     .catch((err) => {
       console.error(err);
-      return response
-        .status(INTERNAL_SERVER_ERROR)
-        .send({ message: "An error occurred on the server." });
+      return next(err);
     });
 };
 
 // Delete Method #1 (DELETE /items/:itemId route)
-const deleteItem = (request, response) => {
+const deleteItem = (request, response, next) => {
   const { itemId } = request.params;
 
+  if (!itemId) {
+    return next(new BadRequestError("Missing item ID."));
+  }
+
   if (!isValidObjectId(itemId)) {
-    return response
-      .status(BAD_REQUEST_ERROR)
-      .send({ message: "Invalid item ID." });
+    return next(new BadRequestError("Invalid item ID."));
   }
 
   return ClothingItem.findById(itemId)
     .then((item) => {
       if (!item) {
-        return response
-          .status(NOT_FOUND_ERROR)
-          .send({ message: "Item not found." });
+        return next(new NotFoundError("Item not found."));
       }
       if (item.owner.toString() !== request.user._id) {
-        return response
-          .status(FORBIDDEN_ERROR)
-          .send({ message: "You do not have permission to delete this item." });
+        return next(
+          new ForbiddenError("You do not have permission to delete this item.")
+        );
       }
 
       return ClothingItem.findByIdAndDelete(itemId).then(() =>
@@ -113,25 +114,23 @@ const deleteItem = (request, response) => {
     .catch((err) => {
       console.error(err);
       if (err.name === "CastError") {
-        return response
-          .status(BAD_REQUEST_ERROR)
-          .send({ message: "Invalid item ID." });
+        return next(new BadRequestError("Invalid item ID."));
       }
 
-      return response
-        .status(INTERNAL_SERVER_ERROR)
-        .send({ message: "An error occured on the server" });
+      return next(err);
     });
 };
 
 // Delete Method #2 (DELETE /items/:itemId/likes route)
-const unlikeItem = (request, response) => {
+const unlikeItem = (request, response, next) => {
   const { itemId } = request.params;
 
+  if (!itemId) {
+    return next(new BadRequestError("Missing item ID."));
+  }
+
   if (!isValidObjectId(itemId)) {
-    return response
-      .status(BAD_REQUEST_ERROR)
-      .send({ message: "Invalid item ID." });
+    return next(new BadRequestError("Invalid item ID."));
   }
 
   return ClothingItem.findByIdAndUpdate(
@@ -141,17 +140,13 @@ const unlikeItem = (request, response) => {
   )
     .then((item) => {
       if (!item) {
-        return response
-          .status(NOT_FOUND_ERROR)
-          .send({ message: "Item not found." });
+        return next(new NotFoundError("Item not found."));
       }
       return response.status(200).send(item);
     })
     .catch((err) => {
       console.error(err);
-      return response
-        .status(INTERNAL_SERVER_ERROR)
-        .send({ message: "An error occurred on the server." });
+      return next(err);
     });
 };
 

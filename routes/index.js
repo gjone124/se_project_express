@@ -1,9 +1,9 @@
 const router = require("express").Router();
 
-const userRouter = require("./users");
-const itemRouter = require("./clothingItems");
-const { createUser, login } = require("../controllers/users");
-const { NOT_FOUND_ERROR } = require("../utils/errors");
+const userRouter = require("./users.js");
+const itemRouter = require("./clothingItems.js");
+const { createUser, login } = require("../controllers/users.js");
+const { NOT_FOUND_ERROR } = require("../utils/errors.js");
 
 // CRUD (Create, Read, Update, Delete)
 

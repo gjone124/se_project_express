@@ -5,8 +5,12 @@
 - Intro
 - Running the Project
 - Testing
+- Stage 1 (Sprint 10) (see se_project_react)
+- Stage 2 (Sprint 11) (see se_project_react)
 - Stage 3 (Sprint 12)
 - Stage 4 (Sprint 13)
+- Stage 5 (Sprint 14) (see se_project_react)
+- Stage 6 (Sprint 15)
 - Images
 - Applications Used
 - Tech Used
@@ -53,6 +57,8 @@ The third stage involves:
 
 ## Stage 4 (Sprint 13)
 
+For the 4th stage of the project in Sprint 13 (Back-End Authentication and Authorization), we were assigned to implement additional features to the back end of the project.
+
 The fourth stage involves:
 
 1)implementing authorization through the use of a JWT token
@@ -68,6 +74,42 @@ The fourth stage involves:
 6)changing getUser method to getCurrentUser method
 
 7)removing getUsers method
+
+## Stage 6 (Sprint 15)
+
+For the 6th stage of the project in Sprint 15 (Automated Testing and Cloud Deployment), we were assigned to implement additional error handling and to publish the website on the internet.
+
+More specifically, the sixth stage involves:
+
+1)setting up centralized error handling by adding separate middleware & defining constructors for errors
+
+2)defining request validation functions in separate middleware using the joi, celebrate, & validator packages
+
+3)implementing loggers for both requests & errors using winston package
+
+4)creating a free tier account on Google Cloud (by giving them your credit card information which is supposed to be free for 90 days & then it automatically cancels after 90 days if you don't upgrade to a paid account)
+
+5)creating virtual machine for remote server on Google Cloud & connecting to server through SSH
+
+6)installing & configuring all required tools for deployment: Node.js, MongoDB, & Git
+
+7)launching node application using PM2 process manager
+
+8)creating an account on freedns.afraid.org in order to create subdomains
+
+9)registering subdomains for both frontend & backend
+
+10)configuring request redirection from public URLs to the application using nginx
+
+11)encrypting data with SSL certificate
+
+12)storing JSON web token in a .env file on the server
+
+13)uploading front end to the server & configuring ngnix to serve the front end
+
+14)setting up server crash testing
+
+15)adding a link to your website in your README.md file
 
 ## Images
 
@@ -116,6 +158,8 @@ Here are two screenshots associated with Project 5 Stage 4:
 - Postman (used for API development and testing)
 - MongoDB (database to store data)
 - GitHub Action (CI/CD (continuous integration and continuous deployment) tool for automating workflows within GitHub repository)
+- Google Cloud (used to deploy project to the internet)
+- FreeDNS (used to register free subdomain name; freedns.afraid.org)
 
 ## Tech Used
 
@@ -126,7 +170,7 @@ Implemented During Sprint 12
 - Node.js (runtime environment that allows Javascript to run outside web browser)
 - Express.js (web application framework for Node.js)
 - Mongoose (Object Data Modeling library for Node.js and MongoDB)
-- ES Lint (tool that identifies and fixes problems in your coded)
+- ES Lint (tool that identifies and fixes problems in your code; ES stands for ECMAScript which stands for European Computer Manufacturers Association Script)
 - Schema (framework that defines how data is organized)
 - Routes (define endpoints in application that map to a functionality)
 - Controllers (handles routes by porcessing requests, interacting with database, and returning responses)
@@ -138,6 +182,10 @@ Added During Sprint 13
 - Authorization (through the use of JSON Web Token)
 - Encryption (through the use of bcrypt)
 - Sign Up and Sign In Feature
+
+Added During Sprint 15
+
+- Data Encryption Using HTTPS, SSL, & Certbot
 
 ## Routes Used
 
@@ -192,6 +240,12 @@ Added During Sprint 13
 - jsonwebtoken
 - bcryptjs
 - cors
+
+Added During Sprint 15
+
+- celebrate (enables Joi validation as middleware)
+- winston (enables developer to understand why error occurs for user if we don't have access to their computer)
+- express-winston
 
 ## Link to Front End Application of This Project
 

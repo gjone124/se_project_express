@@ -6,9 +6,9 @@ const {
   likeItem,
   deleteItem,
   unlikeItem,
-} = require("../controllers/clothingItems");
+} = require("../controllers/clothingItems.js");
 
-const auth = require("../middlewares/auth");
+const auth = require("../middlewares/auth.js");
 
 // CRUD (Create, Read, Update, Delete)
 

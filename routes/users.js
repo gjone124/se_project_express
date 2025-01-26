@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const { getCurrentUser, updateProfile } = require("../controllers/users");
-const auth = require("../middlewares/auth");
+const { getCurrentUser, updateProfile } = require("../controllers/users.js");
+const auth = require("../middlewares/auth.js");
 
 // CRUD (Create, Read, Update, Delete)
 
