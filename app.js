@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+require("dotenv").config(); // Sprint 15
+
 const { errors } = require("celebrate");
 const mainRouter = require("./routes/index.js");
 const errorHandler = require("./middlewares/error-handler.js");
