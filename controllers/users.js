@@ -26,7 +26,7 @@ const createUser = (request, response, next) => {
     return next(new BadRequestError("Name is a required field."));
   }
 
-  //(comment out if avatar is not required)
+  // (comment out if avatar is not required)
   // if (!avatar) {
   //   return next(new BadRequestError("Avatar is a required field."));
   // }
@@ -136,7 +136,7 @@ const updateProfile = (request, response, next) => {
     return next(new BadRequestError("Name is a required field."));
   }
 
-  //(comment out if avatar is not required)
+  // (comment out if avatar is not required)
   // if (!avatar) {
   //   return next(new BadRequestError("Avatar is a required field."));
   // }

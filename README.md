@@ -113,7 +113,7 @@ More specifically, the sixth stage involves:
 
 16)setting up server crash testing
 
-17)adding a link to your website in your README.md file
+17)adding a link to the website in se_project_react's README.md file
 
 ## Images
 
