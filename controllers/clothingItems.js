@@ -22,7 +22,9 @@ const createItem = (request, response, next) => {
   const owner = request.user?._id;
 
   if (!name || !weather || !imageUrl) {
-    return new BadRequestError("Missing required fields for item creation.");
+    return next(
+      new BadRequestError("Missing required fields for item creation.")
+    );
   }
 
   if (!request.user || !request.user._id) {
