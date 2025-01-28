@@ -4,7 +4,6 @@ const bcrypt = require("bcryptjs");
 
 const removePassword = (user) => {
   const { password, ...userWithoutPassword } = user.toObject();
-
   return userWithoutPassword;
 };
 

@@ -10,7 +10,14 @@ const validateURL = (value, helpers) => {
   return helpers.error("string.uri");
 };
 
-const validateCardBody = celebrate({
+const validateEmail = (value, helpers) => {
+  if (validator.isEmail(value)) {
+    return value;
+  }
+  return helpers.error("string.email");
+};
+
+const validateCreateItem = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30).messages({
       "string.min": 'The minimum length of the "name" field is 2',
@@ -28,7 +35,7 @@ const validateCardBody = celebrate({
   }),
 });
 
-const validateUserBody = celebrate({
+const validateCreateUser = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30).messages({
       "string.min": 'The minimum length of the "name" field is 2',
@@ -41,7 +48,7 @@ const validateUserBody = celebrate({
     avatar: Joi.string().custom(validateURL).messages({
       "string.uri": 'the "imageUrl" field must be a valid url',
     }),
-    email: Joi.string().required().email().message({
+    email: Joi.string().required().email(validateEmail).message({
       "string.empty": 'The "email" field must be filled in',
       "string.email": 'the "email" field must be a valid url',
     }),
@@ -53,7 +60,7 @@ const validateUserBody = celebrate({
 
 const validateLogin = celebrate({
   body: Joi.object().keys({
-    email: Joi.string().required().email().message({
+    email: Joi.string().required().email(validateEmail).message({
       "string.empty": 'The "email" field must be filled in',
       "string.email": 'the "email" field must be a valid url',
     }),
@@ -63,7 +70,7 @@ const validateLogin = celebrate({
   }),
 });
 
-const validateId = celebrate({
+const validateItemId = celebrate({
   params: Joi.object().keys({
     itemId: Joi.string().length(24).hex().required().messages({
       "string.empty": 'The "id" field must be filled in',
@@ -73,7 +80,7 @@ const validateId = celebrate({
   }),
 });
 
-const validateUserUpdate = celebrate({
+const validateUpdateProfile = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30).messages({
       "string.empty": 'The "name" field must be filled in',
@@ -90,9 +97,9 @@ const validateUserUpdate = celebrate({
 });
 
 module.exports = {
-  validateCardBody,
-  validateId,
+  validateCreateItem,
+  validateCreateUser,
   validateLogin,
-  validateUserBody,
-  validateUserUpdate,
+  validateItemId,
+  validateUpdateProfile,
 };

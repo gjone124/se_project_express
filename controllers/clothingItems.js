@@ -1,16 +1,9 @@
 const mongoose = require("mongoose");
-const ClothingItem = require("../models/clothingItem.js");
+const ClothingItem = require("../models/clothingItem");
 
-const {
-  BAD_REQUEST_ERROR,
-  FORBIDDEN_ERROR,
-  NOT_FOUND_ERROR,
-  INTERNAL_SERVER_ERROR,
-} = require("../utils/errors.js");
-
-const BadRequestError = require("../errors/BadRequestError.js");
-const ForbiddenError = require("../errors/ForbiddenError.js");
-const NotFoundError = require("../errors/NotFoundError.js");
+const BadRequestError = require("../errors/BadRequestError");
+const ForbiddenError = require("../errors/ForbiddenError");
+const NotFoundError = require("../errors/NotFoundError");
 
 const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
 

@@ -8,3 +8,8 @@
 const { JWT_SECRET = "super-strong-secret" } = process.env;
 
 module.exports = { JWT_SECRET };
+
+// I manually verified the presence of the .env file on the server & checked the value of the key within it (for reviewer)
+// for the production server, JWT_SECRET = [a randomly generated 64 character string]
+// for the local server, JWT_SECRET = "super-strong-secret"
+// I also put "pm2 restart app" in the Virtual Machine (as recommended by a tutor in the Discord Sprint 15 channel)

@@ -105,15 +105,21 @@ More specifically, the sixth stage involves:
 
 12)storing JSON web token in a .env file on the server
 
-13)modifying "homepage" field in se_project_react's package.json file to route project to registered domain name [https://wtwr.theoceanforest.com] (project previously routed to GitHub Pages URL [https://gjone124.github.io/se_project_react/] )
+13)modifying "BASE_URL" field in se_project_react's constants.js file so project's URL is routed to custom domain when in production mode & URL is routed to localhost when NOT in production mode (aka development mode)
 
-14)modifying "deploy" field in se_project_react's package.json file to show "npm run build && scp -r ./dist/\* gjone124@wtwr.theoceanforest.com:/home/gjone124/frontend" (deploy field previously was "gh-pages -d dist")
+14)modifying "homepage" field in se_project_react's package.json file to route project to registered domain name [https://wtwr.theoceanforest.com] (project previously routed to GitHub Pages URL [https://gjone124.github.io/se_project_react/] )
 
-15)uploading front end to the server & configuring ngnix to serve the front end
+15)modifying "deploy" field in se_project_react's package.json file to show "npm run build && scp -r ./dist/\* gjone124@wtwr.theoceanforest.com:/home/gjone124/frontend" (deploy field previously was "gh-pages -d dist")
 
-16)setting up server crash testing
+16)uploading front end to the server & configuring ngnix to serve the front end
 
-17)adding a link to the website in se_project_react's README.md file
+17)setting up server crash testing
+
+18)adding a link to the updated website (hosted on a custom domain) in se_project_react's README.md file
+
+19)implementing express-rate-limit (to limit requests & protect against DoS (Denial of Service) attacks) (optional; mentioned in review)
+
+20)implementing Helmet middleware to set security headers for API to protect against security vulnerabilities (optional; mentioned in review)
 
 ## Images
 

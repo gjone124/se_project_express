@@ -3,10 +3,12 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config(); // Sprint 15
 
-const { errors } = require("celebrate");
-const mainRouter = require("./routes/index.js");
-const errorHandler = require("./middlewares/error-handler.js");
-const { requestLogger, errorLogger } = require("./middlewares/logger.js");
+const { errors } = require("celebrate"); // Sprint 15
+const helmet = require("helmet"); // Sprint 15
+const rateLimiter = require("./middlewares/rateLimiter"); // Sprint 15
+const mainRouter = require("./routes/index");
+const errorHandler = require("./middlewares/error-handler"); // Sprint 15
+const { requestLogger, errorLogger } = require("./middlewares/logger"); // Sprint 15
 
 const app = express();
 const { PORT = 3001 } = process.env;
@@ -22,7 +24,16 @@ mongoose
   })
   .catch(console.error);
 
+// implements Helmet middleware to set security headers for API to protect against security vulnerabilities
+app.use(helmet());
+
+// apply rate limiting to all requests (maximum 100 requests every 15 minutes)
+app.use(rateLimiter);
+
+// parses incoming JSON payloads from HTTP requests & makes data available to request body
 app.use(express.json());
+
+// allows / restricts web applications from making requests to domains other than their own
 app.use(cors());
 
 // enable request logger using Winston (Sprint 15)

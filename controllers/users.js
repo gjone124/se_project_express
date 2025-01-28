@@ -1,20 +1,13 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const User = require("../models/user.js");
-const { JWT_SECRET } = require("../utils/config.js");
-const {
-  BAD_REQUEST_ERROR,
-  CONFLICT_ERROR,
-  NOT_FOUND_ERROR,
-  INTERNAL_SERVER_ERROR,
-  UNAUTHORIZED_ERROR,
-} = require("../utils/errors.js");
+const User = require("../models/user");
+const { JWT_SECRET } = require("../utils/config");
 
-const BadRequestError = require("../errors/BadRequestError.js");
-const ConflictError = require("../errors/ConflictError.js");
-const NotFoundError = require("../errors/NotFoundError.js");
-const UnauthorizedError = require("../errors/UnauthorizedError.js");
+const BadRequestError = require("../errors/BadRequestError");
+const ConflictError = require("../errors/ConflictError");
+const NotFoundError = require("../errors/NotFoundError");
+const UnauthorizedError = require("../errors/UnauthorizedError");
 
 // CRUD (Create, Read, Update, Delete)
 

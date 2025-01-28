@@ -1,6 +1,8 @@
 const router = require("express").Router();
-const { getCurrentUser, updateProfile } = require("../controllers/users.js");
-const auth = require("../middlewares/auth.js");
+const { getCurrentUser, updateProfile } = require("../controllers/users");
+const auth = require("../middlewares/auth");
+
+const { validateUpdateProfile } = require("../middlewares/validation");
 
 // CRUD (Create, Read, Update, Delete)
 
@@ -8,6 +10,6 @@ const auth = require("../middlewares/auth.js");
 router.get("/me", auth, getCurrentUser);
 
 // Update (PATCH /users/me route)
-router.patch("/me", auth, updateProfile);
+router.patch("/me", auth, validateUpdateProfile, updateProfile);
 
 module.exports = router;
