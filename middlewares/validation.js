@@ -10,13 +10,6 @@ const validateURL = (value, helpers) => {
   return helpers.error("string.uri");
 };
 
-const validateEmail = (value, helpers) => {
-  if (validator.isEmail(value)) {
-    return value;
-  }
-  return helpers.error("string.email");
-};
-
 const validateCreateItem = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30).messages({
@@ -48,7 +41,7 @@ const validateCreateUser = celebrate({
     avatar: Joi.string().custom(validateURL).messages({
       "string.uri": 'the "imageUrl" field must be a valid url',
     }),
-    email: Joi.string().required().email(validateEmail).message({
+    email: Joi.string().required().email().message({
       "string.empty": 'The "email" field must be filled in',
       "string.email": 'the "email" field must be a valid url',
     }),
@@ -60,7 +53,7 @@ const validateCreateUser = celebrate({
 
 const validateLogin = celebrate({
   body: Joi.object().keys({
-    email: Joi.string().required().email(validateEmail).message({
+    email: Joi.string().required().email().message({
       "string.empty": 'The "email" field must be filled in',
       "string.email": 'the "email" field must be a valid url',
     }),
