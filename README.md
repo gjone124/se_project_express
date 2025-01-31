@@ -179,7 +179,7 @@ Here are nine screenshots associated with Project 5 Stage 6:
 
 <div display="flex"><img align="center" alt="Creating Subdomains (Deployment Part 4)" src="./assets/Stage 6 (Sprint 15)/(3)Creating Subdomains (Deployment Part 4).png" /></div><br>
 
-4)PM2 Setup (Deployment Part 3)
+4)Making Sure IP Address And Subdomains Work (Deployment Part 4)
 
 <div display="flex"><img align="center" alt="Making Sure IP Address And Subdomains Work (Deployment Part 4)" src="./assets/Stage 6 (Sprint 15)/(4)Making Sure IP Address And Subdomains Work (Deployment Part 4).png" /></div><br>
 
