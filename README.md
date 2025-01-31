@@ -113,7 +113,7 @@ More specifically, the sixth stage involves:
 
 16)uploading front end to the server & configuring ngnix to serve the front end
 
-17)setting up server crash testing
+17)setting up server crash testing (supposed to be removed after review is passed)
 
 18)adding a link to the updated website (hosted on a custom domain) in se_project_react's README.md file
 
@@ -129,27 +129,27 @@ Here are six screenshots associated with Project 5 Stage 3:
 
 1)All Sprint 12 Tests Passed (Postman)
 
-<div display="flex"><img align="center" alt="All Sprint 12 Tests Passed (Postman)" src="./assets/Stage 3 (Sprint 12)/All Sprint 12 Tests Passed (Postman).png" /></div><br>
+<div display="flex"><img align="center" alt="All Sprint 12 Tests Passed (Postman)" src="./assets/Stage 3 (Sprint 12)/(1)All Sprint 12 Tests Passed (Postman).png" /></div><br>
 
 2)All Sprint 12 Tests Passed (Github Action)
 
-<div display="flex"><img align="center" alt="All Sprint 12 Tests Passed (Github Action)" src="./assets/Stage 3 (Sprint 12)/All Sprint 12 Tests Passed (Github Action).png" /></div><br>
+<div display="flex"><img align="center" alt="All Sprint 12 Tests Passed (Github Action)" src="./assets/Stage 3 (Sprint 12)/(2)All Sprint 12 Tests Passed (Github Action).png" /></div><br>
 
 3)User Added (Postman)
 
-<div display="flex"><img align="center" alt="User Added (Postman)" src="./assets/Stage 3 (Sprint 12)/User Added (Postman).png" /></div><br>
+<div display="flex"><img align="center" alt="User Added (Postman)" src="./assets/Stage 3 (Sprint 12)/(3)User Added (Postman).png" /></div><br>
 
 4)User Added (MongoDB)
 
-<div display="flex"><img align="center" alt="User Added (MongoDB)" src="./assets/Stage 3 (Sprint 12)/User Added (MongoDB).png" /></div><br>
+<div display="flex"><img align="center" alt="User Added (MongoDB)" src="./assets/Stage 3 (Sprint 12)/(4)User Added (MongoDB).png" /></div><br>
 
 5)Error Handling (Postman)
 
-<div display="flex"><img align="center" alt="Error Handling (Postman)" src="./assets/Stage 3 (Sprint 12)/Error Handling (Postman).png" /></div><br>
+<div display="flex"><img align="center" alt="Error Handling (Postman)" src="./assets/Stage 3 (Sprint 12)/(5)Error Handling (Postman).png" /></div><br>
 
 6)Error Handling (VS Code Terminal)
 
-<div display="flex"><img align="center" alt="Error Handling (VS Code Terminal)" src="./assets/Stage 3 (Sprint 12)/Error Handling (VS Code Terminal).png" /></div><br>
+<div display="flex"><img align="center" alt="Error Handling (VS Code Terminal)" src="./assets/Stage 3 (Sprint 12)/(6)Error Handling (VS Code Terminal).png" /></div><br>
 
 **Images (Stage 4 / Sprint 13)**
 
@@ -157,11 +157,51 @@ Here are two screenshots associated with Project 5 Stage 4:
 
 1)All Sprint 13 Tests Passed (Postman)
 
-<div display="flex"><img align="center" alt="All Sprint 13 Tests Passed (Postman)" src="./assets/Stage 4 (Sprint 13)/All Sprint 13 Tests Passed (Postman).png" /></div><br>
+<div display="flex"><img align="center" alt="All Sprint 13 Tests Passed (Postman)" src="./assets/Stage 4 (Sprint 13)/(1)All Sprint 13 Tests Passed (Postman).png" /></div><br>
 
 2)All Sprint 13 Tests Passed (Github Action)
 
-<div display="flex"><img align="center" alt="All Sprint 13 Tests Passed (Github Action)" src="./assets/Stage 4 (Sprint 13)/All Sprint 13 Tests Passed (Github Action).png" /></div><br>
+<div display="flex"><img align="center" alt="All Sprint 13 Tests Passed (Github Action)" src="./assets/Stage 4 (Sprint 13)/(2)All Sprint 13 Tests Passed (Github Action).png" /></div><br>
+
+**Images (Stage 6 / Sprint 15)**
+
+Here are nine screenshots associated with Project 5 Stage 6:
+
+1)VM Instance Created Using Google Cloud (Deployment Part 1)
+
+<div display="flex"><img align="center" alt="VM Instance Created Using Google Cloud (Deployment Part 1)" src="./assets/(1)Stage 6 (Sprint 15)/VM Instance Created Using Google Cloud (Deployment Part 1).png" /></div><br>
+
+2)PM2 Setup (Deployment Part 3)
+
+<div display="flex"><img align="center" alt="PM2 Setup (Deployment Part 3)" src="./assets/Stage 6 (Sprint 15)/(2)PM2 Setup (Deployment Part 3).png" /></div><br>
+
+3)Creating Subdomains (Deployment Part 4)
+
+<div display="flex"><img align="center" alt="Creating Subdomains (Deployment Part 4)" src="./assets/Stage 6 (Sprint 15)/(3)Creating Subdomains (Deployment Part 4).png" /></div><br>
+
+4)PM2 Setup (Deployment Part 3)
+
+<div display="flex"><img align="center" alt="Making Sure IP Address And Subdomains Work (Deployment Part 4)" src="./assets/Stage 6 (Sprint 15)/(4)Making Sure IP Address And Subdomains Work (Deployment Part 4).png" /></div><br>
+
+5)Nginx Successfully Installed (Deployment Part 5)
+
+<div display="flex"><img align="center" alt="Nginx Successfully Installed (Deployment Part 5)" src="./assets/(5)Nginx Successfully Installed (Deployment Part 5).png" /></div><br>
+
+6)Git Pull For Backend Production Server (Deployment Part 7)
+
+<div display="flex"><img align="center" alt="Git Pull For Backend Production Server (Deployment Part 7)" src="./assets/Stage 6 (Sprint 15)/(6)Git Pull For Backend Production Server (Deployment Part 7).png" /></div><br>
+
+7)Configuring Nginx For Frontend (Deployment Part 8b)
+
+<div display="flex"><img align="center" alt="Configuring Nginx For Frontend (Deployment Part 8b)" src="./assets/(7)Configuring Nginx For Frontend (Deployment Part 8b).png" /></div><br>
+
+8)Custom Website Deployed (Deployment Part 8b)
+
+<div display="flex"><img align="center" alt="Custom Website Deployed (Deployment Part 8b)" src="./assets/Stage 6 (Sprint 15)/(8)Custom Website Deployed (Deployment Part 8b).png" /></div><br>
+
+9)Full Stack Software Engineer Certificate
+
+<div display="flex"><img align="center" alt="Full Stack Software Engineer Certificate" src="./assets/Stage 6 (Sprint 15)/(9)Full Stack Software Engineer Certificate.png" /></div><br>
 
 ## Applications Used
 
@@ -196,6 +236,7 @@ Added During Sprint 13
 Added During Sprint 15
 
 - Data Encryption Using HTTPS, SSL, & Certbot
+- Production Server
 
 ## Routes Used
 
@@ -247,15 +288,18 @@ Implemented During Sprint 12
 
 Added During Sprint 13
 
-- jsonwebtoken
-- bcryptjs
-- cors
+- jsonwebtoken (used for authentication & authorization)
+- bcryptjs (securely hashes passwords)
+- cors (allows / restricts web applications from making requests to domains other than their own)
 
 Added During Sprint 15
 
 - celebrate (enables Joi validation as middleware)
 - winston (enables developer to understand why error occurs for user if we don't have access to their computer)
 - express-winston
+- dotenv (helps keep passwords & API tokens secure)
+- express-rate-limit (limits requests to server)
+- helmet (protects against security vulnerabilities)
 
 ## Link to Front End Application of This Project
 

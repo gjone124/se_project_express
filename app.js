@@ -39,13 +39,6 @@ app.use(cors());
 // enable request logger using Winston (Sprint 15)
 app.use(requestLogger);
 
-// crash test (for reviewer purposes; should remove after review is passed)
-app.get("/crash-test", () => {
-  setTimeout(() => {
-    throw new Error("Server will crash now");
-  }, 0);
-});
-
 // route to run application
 app.use("/", mainRouter);
 
