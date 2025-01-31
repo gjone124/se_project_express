@@ -238,7 +238,12 @@ Added During Sprint 13
 Added During Sprint 15
 
 - Data Encryption Using HTTPS, SSL, & Certbot
+  - HTTPS (Hypertext Transfer Protocol Secure; makes use of SSL)
+  - SSL (Secure Sockets Layer; protocol encrypts data between web browser & server)
+  - Certbot (automates process of getting & renewing SSL Certificate)
 - Production Server
+- PM2 (Process Manager 2; keeps application running, monitors performance, & manages logs)
+- NGINX (uses reverse proxy by acting as intermediary between client server & backend server)
 
 ## Routes Used
 
