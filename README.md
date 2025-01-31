@@ -1,4 +1,4 @@
-# Project 5 (Stage 3 / 4): Back End for React / What to Wear? Project
+# Project 5 (Stage 3 / 4 / 6): Back End for React / What to Wear? Project
 
 ### Overview
 
@@ -16,6 +16,8 @@
 - Tech Used
 - Routes Used
 - Dependencies Used
+- Chart of Class Inheritance Structure
+- Link to Front End Application of This Project
 
 ## Intro
 
@@ -300,6 +302,45 @@ Added During Sprint 15
 - dotenv (helps keep passwords & API tokens secure)
 - express-rate-limit (limits requests to server)
 - helmet (protects against security vulnerabilities)
+
+**Chart of Class Inheritance Structure** (19 unique files; 8 unique files reused; 36 instances of files being used)
+
+- 1)app.js
+  - A)rateLimiter.js
+  - B)index.js
+    - I)routes/users.js
+      - a)controllers/users.js (1st time file is imported)
+        - 1)models/user.js (1st time file is imported)
+        - 2)config.js (1st time file is imported)
+        - 3)BadRequestError.js (1st time file is imported)
+        - 4)ConflictError.js (1st time file is imported)
+        - 5)NotFoundError.js (1st time file is imported)
+        - 6)UnauthorizedError.js (1st time file is imported)
+      - b)auth.js (1st time file is imported)
+        - 1)config.js (2nd time file is imported)
+        - 2)UnauthorizedError.js (2nd time file is imported)
+      - c)validation.js (1st time file is imported)
+    - II)routes/clothingItems.js
+      - a)controllers/clothingItems.js
+        - 1)models/clothingItem.js
+        - 2)BadRequestError.js (2nd time file is imported)
+        - 3)ForbiddenError.js
+        - 4)NotFoundError.js (2nd time file is imported)
+      - b)auth.js (2nd time file is imported)
+        - 1)config.js (3rd time file is imported)
+        - 2)UnauthorizedError.js (3rd time file is imported)
+      - c)validation.js (2nd time file is imported)
+    - III)controllers/users.js (2nd time file is imported)
+      - a)models/user.js (2nd time file is imported)
+      - b)config.js (4th time file is imported)
+      - c)BadRequestError.js (3rd time file is imported)
+      - d)ConflictError.js (2nd time file is imported)
+      - e)NotFoundError.js (3rd time file is imported)
+      - f)UnauthorizedError.js (4th time file is imported)
+    - IV)validation.js (3rd time file is imported)
+    - V)NotFoundError.js (4th time file is imported)
+  - C)error-handler.js
+  - D)logger.js
 
 ## Link to Front End Application of This Project
 
