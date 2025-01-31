@@ -169,7 +169,7 @@ Here are nine screenshots associated with Project 5 Stage 6:
 
 1)VM Instance Created Using Google Cloud (Deployment Part 1)
 
-<div display="flex"><img align="center" alt="VM Instance Created Using Google Cloud (Deployment Part 1)" src="./assets/(1)Stage 6 (Sprint 15)/VM Instance Created Using Google Cloud (Deployment Part 1).png" /></div><br>
+<div display="flex"><img align="center" alt="VM Instance Created Using Google Cloud (Deployment Part 1)" src="./assets/(1)Stage 6 (Sprint 15)/(1)VM Instance Created Using Google Cloud (Deployment Part 1).png" /></div><br>
 
 2)PM2 Setup (Deployment Part 3)
 
