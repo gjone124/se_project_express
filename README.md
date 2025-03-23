@@ -219,7 +219,7 @@ Implemented During Sprint 12
 
 - Javascript (programming language)
 - JSON (Javascript Object Notation)
-- Node.js (runtime environment that allows Javascript to run outside web browser)
+- Node.js (runtime environment that allows Javascript to run outside web browser using open source libraries)
 - Express.js (web application framework for Node.js)
 - Mongoose (Object Data Modeling library for Node.js and MongoDB)
 - ES Lint (tool that identifies and fixes problems in your code; ES stands for ECMAScript which stands for European Computer Manufacturers Association Script)
@@ -228,6 +228,8 @@ Implemented During Sprint 12
 - Controllers (handles routes by porcessing requests, interacting with database, and returning responses)
 - Error Handling (ensures program doesn't crash by detecting, reporting, and resolving errors)
 - User Validation (prevents invalid or harmful input from proceeding)
+- Request Objects (represent data sent by client to server; HTTP method (GET / POST / PUT / DELETE method), headers, URL parameters, & body)
+- Response Objects (represent data sent by server to client after processing request; status code (200 OK / 404 Not Found), headers, & body)
 
 Added During Sprint 13
 
